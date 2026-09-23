@@ -1,23 +1,12 @@
 public class Fabrica {
 
     private Fabrica() {};
-
     private static Fabrica instance = new Fabrica();
-    private String tipoFabrica;
-
     public static Fabrica getInstance() {
         return instance;
     }
 
-    public String getTipoFabrica() {
-        return tipoFabrica;
-    }
-
-    public void setTipoFabrica(String tipoFabrica) {
-        this.tipoFabrica = tipoFabrica;
-    }
-
-    public static Fabrica obterFabrica(String fabrica) {
+    public FabricaAbstrata obterFabrica(String fabrica) {
         Class classe = null;
         Object objeto = null;
 
@@ -27,9 +16,9 @@ public class Fabrica {
         } catch (Exception ex) {
             throw new IllegalArgumentException("Fabrica inexistente");
         }
-        if (!(objeto instanceof Fabrica)) {
+        if (!(objeto instanceof FabricaAbstrata)) {
             throw new IllegalArgumentException("Fabrica inválida");
         }
-        return (Fabrica) objeto;
+        return (FabricaAbstrata) objeto;
     }
 }
